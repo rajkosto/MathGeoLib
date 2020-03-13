@@ -302,8 +302,13 @@ Plane Polygon::PlaneCCW() const
 		vec dir = (vec(p[1])-vec(p[0])).Normalized();
 		return Plane(Line(p[0], dir), dir.Perpendicular());
 	}
-	if (p.size() == 3)
-		return Plane(p[0], p[1], p[2]);
+	if (p.size() == 3) 
+	{
+		if (!float3::AreCollinear(p[0], p[1], p[2]))
+			return Plane(p[0], p[1], p[2]); 
+		else
+			return Plane(Line(p[0], p[1]), (p[0]-p[1]).Perpendicular());
+	}
 	if (p.size() == 2)
 	{
 		vec dir = (vec(p[1])-vec(p[0])).Normalized();
