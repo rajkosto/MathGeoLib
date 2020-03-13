@@ -26,6 +26,11 @@ bool EqualAbs(float a, float b, float epsilon)
 	return Abs(a-b) < epsilon;
 }
 
+bool EqualAbs(double a, double b, double epsilon)
+{
+	return Abs(a-b) < epsilon;
+}
+
 float RelativeError(float a, float b)
 {
 	if (a == b) return 0.f; // Handles the special case where approximation and real are both zero.
